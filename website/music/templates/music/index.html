@@ -2,7 +2,21 @@
 <html lang="en"> 
 
 	<head> <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
-		<title>Title Goes Here</title> 
+		<title>Album Listing</title>
+		{% load staticfiles %}
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" /> 
+		<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}" /> 
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Logo -->
+				<div class="navbar-header">
+					<a class="navbar-brand" href="{% url 'music:index' %}">Viberr</a>
+				</div>
+			</div>
+		</nav>
+		
 	</head>
 
 	<body> 
@@ -11,7 +25,7 @@
 	<h3>Here are all my albums:</h3>
 	<ul>
 		{% for album in all_albums %} 
-		<li><a href="{% url 'music:detail' id %}">{{ album.title}} </a></li>
+		<li><a href="{% url 'music:detail' album.id %}">{{ album.title}} </a></li>
 		{% endfor %}
 	</ul>
 
