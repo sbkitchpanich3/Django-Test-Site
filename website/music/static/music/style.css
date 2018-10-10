@@ -5,3 +5,7 @@ body {
 .active {
    background:black; color:#000;
 }
+
+.navbar-brand {
+	font-family: 'Satisfy', cursive;
+}

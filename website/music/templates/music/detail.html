@@ -1,31 +1,20 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
-<html lang="en"> 
+{% extends 'music/base.html' %}
 
-	<head> <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
-		<title>Title Goes Here</title> 
-	</head>
+{% block title %}Album Details{% endblock %}
 
-	<body> 
-		<img src="{{ album.logo }}">
+{% block body %}
+
+		<img src="{{ album.logo }}" style="width: 250px;">
+
 		<h1>{{ album.title }}</h1>
 		<h2>{{ album.artist }}</h2>
-		{% if error_message %}
-			<p><strong>{{ error_message }}</strong></p>
-		{% endif %}
 
-		<form action = "{% url 'music:favorite' album.id %}" method = "post">
-			{% csrf_token %}
 			{% for song in album.song_set.all %}
-				<input type="radio" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}" />
-				<label for="song{{ forloop.counter }}">
 					{{ song.song_title }}
 					{% if song.is_favorite %}
 						<img src="https://cdn2.iconfinder.com/data/icons/vaga/star.png">
 					{% endif %}
-				</label><br>
+				<br>
 			{% endfor %}
-			<input type="submit" value="Favorite">
-		</form>
-	</body> 
 
-</html>
+{% endblock %}
